@@ -10,7 +10,12 @@ function App() {
     currentGrid[row][col] = game.turn === 1 ? 100 : 200;
     const updatedGame = new TicTacToe();
     updatedGame.grid = currentGrid;
-    updatedGame.switchTurns();
+    let winner = updatedGame.checkWin()
+    if (winner) {
+      alert("Congratulations! Player " + winner + " has won the game!");
+    }
+    updatedGame.turn = game.turn; // copy over the current turn
+    updatedGame.switchTurns(); // switch turns for the next move
     setGame(updatedGame);
   };
 

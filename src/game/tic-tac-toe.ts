@@ -2,17 +2,16 @@ class TicTacToe {
   public grid: Array<Array<number>>;
   public playerOne: string;
   public playerTwo: string;
-  public turn: number;
+  public turn: number = 1;
 
   constructor() {
     this.grid = [
-      [1, 2, 3],
-      [1, 2, 3],
-      [1, 2, 3],
+      [" ", " ", " "],
+      [" ", " ", " "],
+      [" ", " ", " "],
     ];
     this.playerOne = "X";
     this.playerTwo = "O";
-    this.turn = 1;
   }
 
   checkTurn(): number {
@@ -22,18 +21,21 @@ class TicTacToe {
   play(move: Array<number>): void {
     if (this.turn === 1) {
       this.grid[move[0]][move[1]] = 100;
+      console.log(this.checkWin());
     } else if (this.turn === 2) {
       this.grid[move[0]][move[1]] = 200;
+      console.log(this.checkWin());
     }
   }
 
   switchTurns(): void {
     if (this.turn === 1) {
       this.turn = 2;
+      console.log("turn for 2: ", this.turn);
       return;
-    }
-    if (this.turn === 2) {
+    } else if (this.turn === 2) {
       this.turn = 1;
+      console.log("turn for 1: ", this.turn);
       return;
     } else {
       throw new Error(`Invalid turn number: ${this.turn}`);
